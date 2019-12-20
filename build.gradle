@@ -55,6 +55,8 @@ dependencies {
   // Compile-time dependencies
   implementation 'org.springframework.boot:spring-boot-starter'
   implementation 'org.springframework.cloud:spring-cloud-stream'
+  // Add binder to support sending/receiving messages using a RabbitMQ broker
+  implementation 'org.springframework.cloud:spring-cloud-stream-binder-rabbit'
 
   // Test dependencies
   testImplementation('org.springframework.boot:spring-boot-starter-test') {
@@ -68,7 +70,7 @@ dependencies {
   // the TestSupportBinder using one of the Spring Boot auto-config exclusion mechanisms, e.g.
   // @EnableAutoConfiguration(exclude= TestSupportBinderAutoConfiguration.class) or
   // @SpringBootApplication(exclude = TestSupportBinderAutoConfiguration.class)
-  testImplementation('org.springframework.cloud:spring-cloud-stream-test-support')  
+  testImplementation('org.springframework.cloud:spring-cloud-stream-test-support')
 }
 
 dependencyManagement {
