@@ -1,0 +1,39 @@
+# **********************************************************************************************************************
+# Externalised application configuration for those values which vary across environments.
+#
+# Configures both the default values and the overrides for particular environments in one file, using a combination of
+# YAML's support for multiple docs in a file ('---'), and Boot's support for denoting the environment to which the
+# config applies using the spring.profiles property.
+#
+# Environment specific config is keyed and activated using Spring's Environment and bean profile support. There is a
+# named Spring bean profile for each environment. Whilst this file doesn't configure environment specific beans, Spring
+# Boot will override properties loaded into the Environment, to configure common beans, based on the active profile(s).
+#
+# A list of the common supported Spring Boot properties can be found at
+# http://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#common-application-properties
+#
+# **********************************************************************************************************************
+
+# **********************************************************************************************************************
+# Default config used in all environments unless overridden
+# **********************************************************************************************************************
+
+# Specifies the Spring Profiles (environment specific Spring app config and beans) which are active by default
+# To override this at runtime, specify the same property on the command line, e.g. --spring.profiles.active=prod
+# To add active profiles at runtime, specify the following on the command line, e.g. --spring.profiles.include=proddb
+spring.profiles.active: local
+
+# Application info
+# ----------------
+info.app.name: Loggning Consumer Example
+info.app.description: A minimal example of how to use the Spring Cloud Stream framework to build microservices that
+  are integrated using async message based APIs built on top of one of a no. of supported shared message broker, in a
+  broker-agnostic manner.
+info.app.version: 0.0.1
+
+---
+
+# **********************************************************************************************************************
+# Overrides for the dev environment, activated using Spring bean profile 'dev'
+# **********************************************************************************************************************
+spring.profiles: local

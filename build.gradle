@@ -18,10 +18,15 @@
 // Apply plugins
 // *********************************************************************************************************************
 // Binary plugins - 
-// Due to Gradle's constrained syntax for the plugins block, plugin versions must be defined in a pluginsManagement block in settings.gradle 
+// Due to Gradle's constrained syntax for the plugins block, binary plugin versions can be expressed as properties 
+// here. This can be achieved if needed by moving the plugins to a pluginsManagement block in settings.gradle 
 plugins {
   id 'idea'
   id 'java'
+  id 'io.spring.dependency-management' version '1.0.8.RELEASE'
+  // Apply Boot plugin to provide managed, blessed dependencies and Gradle tasks such as assembling fat executable jar
+  // Defines the version of Spring Boot used by the  project
+  id 'org.springframework.boot' version '2.2.2.RELEASE'  
 }
 
 // *********************************************************************************************************************
@@ -45,6 +50,16 @@ repositories {
 }
 
 dependencies {
+  // Note - Dependencies without a specified version use the blessed/test versions defined by the Spring Boot plugin.
+
+  // Compile-time dependencies
+  compile("org.springframework.boot:spring-boot-starter")
+
+  // Test dependencies
+  testImplementation('org.springframework.boot:spring-boot-starter-test') {
+    // Exclude module supporting JUnit tests based on older JUnit 4 API
+    exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+  }  
 }
 
 // *********************************************************************************************************************
@@ -73,4 +88,3 @@ test {
     events "passed", "skipped", "failed" // Log the execution of each test and its result
   }
 }
-
