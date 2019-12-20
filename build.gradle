@@ -61,6 +61,14 @@ dependencies {
     // Exclude module supporting JUnit tests based on older JUnit 4 API
     exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
   }
+
+  // Provides SCS' TestSupportBinder to support testing SCS messaging apps without relying on connecting to msg broker
+  // (app's configured SCS message binder). Only use in test scope as overrides other binders when detected on classpath
+  // Other types of tests that wish to test in conjunction with the production message binder instead need to disable
+  // the TestSupportBinder using one of the Spring Boot auto-config exclusion mechanisms, e.g.
+  // @EnableAutoConfiguration(exclude= TestSupportBinderAutoConfiguration.class) or
+  // @SpringBootApplication(exclude = TestSupportBinderAutoConfiguration.class)
+  testImplementation('org.springframework.cloud:spring-cloud-stream-test-support')  
 }
 
 dependencyManagement {
