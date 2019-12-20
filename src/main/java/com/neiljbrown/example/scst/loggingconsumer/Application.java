@@ -17,6 +17,8 @@ package com.neiljbrown.example.scst.loggingconsumer;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.stream.annotation.EnableBinding;
+import org.springframework.cloud.stream.messaging.Sink;
 
 /**
  * Provides the entry point for running the application from the command line.
@@ -31,6 +33,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * guessing and configuring the Spring beans the app is likely to need, based on its environment, classpath etc.
  */
 @SpringBootApplication
+// Enable binding of @Input and @Output msg channels in specified interfaces to underlying msg broker detected on
+// classpath, creating the channels where necessary
+@EnableBinding(Sink.class) // Create binding for single input msg channel named 'input'
 public class Application {
 
 	// Prevent instantiation of class while it is a utility class containing only static methods, to keep checkstyle happy
