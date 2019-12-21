@@ -25,7 +25,7 @@ import org.springframework.stereotype.Component;
  * An example of a POJO-based message consumer implemented using the Spring Cloud Stream framework.
  */
 @Component
-class PersonMessageConsumer {
+public class PersonMessageConsumer {
 
   private static final Logger logger = LoggerFactory.getLogger(PersonMessageConsumer.class);
 
