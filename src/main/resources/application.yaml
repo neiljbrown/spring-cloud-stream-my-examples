@@ -31,6 +31,13 @@ info.app.description: A minimal example of how to use the Spring Cloud Stream fr
   broker-agnostic manner.
 info.app.version: 0.0.1
 
+# Spring Cloud Stream Message Channel Bindings
+# --------------------------------------------
+# When the app is scaled-out ensure all instances of the app operate in the same named consumer group, i.e. operate
+# as competing consumers and only process each message once. (By default SCSt assigns each instance to an independent,
+# randomly named consumer group).
+spring.cloud.stream.bindings.input.group: logging-consumer-group
+
 ---
 
 # **********************************************************************************************************************
