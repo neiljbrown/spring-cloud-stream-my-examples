@@ -110,3 +110,17 @@ test {
     events "passed", "skipped", "failed" // Log the execution of each test and its result
   }
 }
+
+// *********************************************************************************************************************
+// Tasks
+// *********************************************************************************************************************
+
+// Custom task for running javadoc on Java classes in src/test/java
+task javadocTests(type: Javadoc, group: "documentation" ) {
+  description = 'Generates Javadoc API documentation for the test source code.'
+  source = sourceSets.test.allJava
+  classpath = sourceSets.test.compileClasspath
+  destinationDir = file("${buildDir}/docs/javadocTests")
+  options.links(project.ext.javadocLinks)
+  options.addBooleanOption('html5',true)
+}
