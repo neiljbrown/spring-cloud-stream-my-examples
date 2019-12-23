@@ -1,0 +1,25 @@
+= Spring Cloud Stream My Examples 
+:sectlinks:
+:sectnums:
+:sectnumlevels: 4
+:toclevels: 4
+
+This repo contains a collection of my examples of using the Spring Cloud Stream (SCSt) messaging framework to 
+build message-driven microservices (services that use async messaging APIs to integrate with other services on top of 
+a shared message broker) in a declarative, broker-agnostic manner.
+
+Each example is implemented as a standalone app or apps(s). The source code for each is contained within a separate
+sub-folder within this repo.
+
+A summary of the examples produced to date is provided below. 
+
+== Basic examples
+This folder contains services which provide basic examples of using core SCSt features.
+
+*basic/logging-consumer* - This project comprises a single service that provides an example of a POJO based message
+consumer implemented using SCSt's `@StreamListener` support that consumes messages from a single input message channel deployed
+on a RabbitMQ message broker.
+
+End
+
+---
