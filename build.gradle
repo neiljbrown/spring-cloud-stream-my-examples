@@ -21,6 +21,7 @@
 // Due to Gradle's constrained syntax for the plugins block, binary plugin versions can be expressed as properties
 // here. This can be achieved if needed by moving the plugins to a pluginsManagement block in settings.gradle
 plugins {
+  id 'eclipse'
   id 'idea'
   id 'java'
   id 'io.spring.dependency-management' version '1.0.8.RELEASE'
