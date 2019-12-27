@@ -26,13 +26,27 @@ provided features (such as broker binders, channel bindings, @StreamListener met
 support (TestSupportBinder) to avoid the need for such tests to depend on connecting to a real broker.
 
 == Application Overview
-The project's example 'logging consumer' service consists of a single message consumer that binds to (listens on) an
-input message channel and  processes the messages it receives simply by logging them to the console (stdout).
+The project consists of a single service named 'logging-consumer' that consumes messages received in an input message
+channel and processes them by simply logging them to its console (stdout).
 
-The service is configured to exchange messages using *RabbitMQ* for its message broker - one of the simplest brokers
-supported by SCSt. (This could be easily swapped-out for one of the other broker's supported by SCSt by updating the
-project's dependencies to use an alternative SCSt binder).
+As shown in figure 1 below the service exchanges messages with other services indirectly via a message broker for
+higher availability and looser coupling. For the purposes of this example RabbitMQ is used as the broker.
 
+.Service consumes messages via a message broker
+image::application-overview-level1.png[]
+
+As shown in figure 2, the service is built on the Spring Cloud Stream (SCSt) framework. This abstracts the service from
+the specifics of the particular message broker being used.  The application just adds the class of SCSt binder for the
+required broker, in this case RabbitMQ, to its classpath. It also declares SCSt bindings for the message channels it
+uses, in this case a single 'input' message channel.
+
+.Service is built on Spring Cloud Stream
+image::application-overview-level2.png[align=center]
+
+
+SCSt takes care of integrating with the specific broker, including provisioning and subscribing to message channels
+declared in the application's bindings; consuming messages from the channel and dispatching them for processing by
+the service's declared @StreamListener handler method
 
 == Generating IDE Projects and Code Docs (Javadoc)
 If you'd like to view the source and/or run the project's tests from your IDE, the project's Gradle build script
